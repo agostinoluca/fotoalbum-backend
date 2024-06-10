@@ -2,12 +2,12 @@
 
 # Fotoalbum
 
----
-
 ### Consegna
 
-Nome repo backend: fotoalbum-backend
+Nome repo backend: fotoalbum-backend <br>
 Nome repo frontend: fotoalbum-frontend
+
+---
 
 ## Descrizione:
 
