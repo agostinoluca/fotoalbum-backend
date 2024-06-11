@@ -55,6 +55,9 @@
                         <li class="nav-item">
                             <a class="nav-link" href="{{ url('/') }}">{{ __('Home') }}</a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('admin.photos.index') }}">{{ __('Photos') }}</a>
+                        </li>
                     </ul>
 
                     <!-- Right Side Of Navbar -->
