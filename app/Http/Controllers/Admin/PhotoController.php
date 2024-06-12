@@ -89,6 +89,11 @@ class PhotoController extends Controller
      */
     public function destroy(Photo $photo)
     {
-        //
+        if (!Str::startsWith($photo->image, 'https//')) {
+            Storage::delete($photo->image);
+        }
+
+        $photo->delete();
+        return to_route('admin.photos.index')->with('status', 'Photo deleted correctly.');
     }
 }

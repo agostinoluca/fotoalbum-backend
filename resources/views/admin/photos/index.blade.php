@@ -50,8 +50,55 @@
                                 <a class="btn btn-sm btn-secondary " href="{{ route('admin.photos.edit', $photo) }}"><i
                                         class="fa fa-pencil" aria-hidden="true"></i></a>
 
-                                <a href="#">DELETE</a>
+
+                                <!-- Modal trigger button -->
+                                <button type="button" class="btn btn-danger btn-sm" data-bs-toggle="modal"
+                                    data-bs-target="#modalId-{{ $photo->id }}">
+                                    <i class="fa-solid fa-xmark"></i>
+                                </button>
                             </td>
+                        </tr>
+                        <!-- Modal Body -->
+                        <!-- if you want to close by clicking outside the modal, delete the last endpoint:data-bs-backdrop and data-bs-keyboard -->
+                        <div class="modal fade" id="modalId-{{ $photo->id }}" tabindex="-1" data-bs-backdrop="static"
+                            data-bs-keyboard="false" role="dialog" aria-labelledby="modalTitle-{{ $photo->id }}"
+                            aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-lg"
+                                role="document">
+                                <div class="modal-content text-center">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="modalTitle-{{ $photo->id }}">
+                                            <span class="text-danger">Delete </span><span>{{ $photo->title }}</span>
+                                        </h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                            aria-label="Close"></button>
+                                    </div>
+                                    <div class="p-3">
+                                        @include('partials.check_image', [
+                                            'width' => '400px',
+                                            'aspectRatio' => '16/9',
+                                        ])
+                                    </div>
+                                    <div class="modal-body">Are you sure you want to delete this photo?</div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                                            Close
+                                        </button>
+
+                                        <form action="{{ route('admin.photos.destroy', $photo) }}" method="post">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit" class="btn btn-danger">
+                                                DELETE
+                                            </button>
+
+                                        </form>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        </td>
                         </tr>
                     @empty
                         <tr class="table-dark">
