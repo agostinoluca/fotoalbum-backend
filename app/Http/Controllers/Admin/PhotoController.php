@@ -44,7 +44,7 @@ class PhotoController extends Controller
         // dd($validated);
 
         Photo::create($validated);
-        return to_route('admin.photos.index')->with('message', 'Congratulations, you have uploaded your new fantastic photo!');
+        return to_route('admin.photos.index')->with('status', 'Congratulations, you have added your new fantastic photo!');
     }
 
     /**
@@ -60,7 +60,7 @@ class PhotoController extends Controller
      */
     public function edit(Photo $photo)
     {
-        //
+        return view('admin.photos.edit', compact('photo'));
     }
 
     /**
@@ -68,7 +68,20 @@ class PhotoController extends Controller
      */
     public function update(UpdatePhotoRequest $request, Photo $photo)
     {
-        //
+        // dd($request->all());
+        $validated = $request->validated();
+
+        if ($request->has('image')) {
+
+            Storage::delete($photo->image);
+
+            $image_path = Storage::put('uploads', $request->image);
+            $validated['image'] = $image_path;
+        }
+
+        $photo->update($validated);
+
+        return to_route('admin.photos.index')->with('status', 'Congratulations, you have uploaded your fantastic photo!');
     }
 
     /**

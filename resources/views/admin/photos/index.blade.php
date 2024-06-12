@@ -12,6 +12,8 @@
 
 
     <div class="container mt-5">
+        @include('partials.action_confirm')
+
 
         <div class="table-responsive">
             <table class="table table-striped table-hover table-borderless table-secondary align-middle">
