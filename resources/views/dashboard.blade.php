@@ -24,7 +24,7 @@
         </div>
         <div class="card mt-5">
             <div class="card-header text-center">
-                <span class="fs-3">What do you want to do?</span>
+                <span class="fs-3">Hello {{ Auth::user()->name }}! What do you want to do?</span>
             </div>
             <div class="card-body p-5 d-flex justify-content-evenly">
                 <a class="btn btn-lg border btn-transparent" href="{{ url('/') }}"><i

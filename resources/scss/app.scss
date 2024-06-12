@@ -3,3 +3,8 @@
 img {
     max-width: 100%;
 }
+
+.scrollable-content {
+    max-height: 300px;
+    overflow-y: auto;
+}
