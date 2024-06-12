@@ -6,6 +6,8 @@ use App\Models\Photo;
 use App\Http\Requests\StorePhotoRequest;
 use App\Http\Requests\UpdatePhotoRequest;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
 
 class PhotoController extends Controller
 {
@@ -24,7 +26,7 @@ class PhotoController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.photos.create');
     }
 
     /**
@@ -32,7 +34,17 @@ class PhotoController extends Controller
      */
     public function store(StorePhotoRequest $request)
     {
-        //
+        // dd($request->all());
+        $validated = $request->validated();
+
+        $validated['slug'] = Str::slug($request->title, '-');
+
+        $validated['image'] = Storage::put('uploads', $request->image);
+
+        // dd($validated);
+
+        Photo::create($validated);
+        return to_route('admin.photos.index')->with('message', 'Congratulations, you have uploaded your new fantastic photo!');
     }
 
     /**

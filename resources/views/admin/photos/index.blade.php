@@ -1,15 +1,17 @@
 @extends('layouts.admin')
 
 @section('content')
-    <header class="bg-dark text-white pt-4">
-        <div class="container d-flex justify-content-between align-items-center">
-            <h1>My Photos</h1>
-            <a class="btn btn-transparent border" href="#"> <i class="fa fa-plus-circle" aria-hidden="true"></i> Add new
+    <header class="p-4 mb-4 bg-secondary bg-opacity-25">
+        <div class="container-fluid py-3 d-flex justify-content-between align-items-center">
+            <h1 class="display-5 fw-bold">My Photos</h1>
+            <a class="btn btn-transparent border" href="{{ route('admin.photos.create') }}"> <i class="fa fa-plus-circle"
+                    aria-hidden="true"></i> Add new
                 photo</a>
         </div>
     </header>
 
-    <div class="container mt-3">
+
+    <div class="container mt-5">
 
         <div class="table-responsive">
             <table class="table table-striped table-hover table-borderless table-secondary align-middle">
@@ -28,7 +30,12 @@
                     @forelse ($photos as $photo)
                         <tr class="table-dark text-center">
                             <td scope="row">{{ $photo->id }}</td>
-                            <td><img width="150" src="{{ $photo->image }}" alt="Photo number {{ $photo->id }}"></td>
+                            <td>
+                                @include('partials.check_image', [
+                                    'width' => '200px',
+                                    'aspectRatio' => '16/9',
+                                ])
+                            </td>
                             <td>{{ $photo->title }}</td>
                             <td>{{ $photo->evidence == 1 ? 'YES' : 'NO' }}</td>
                             <td>{{ $photo->published == 1 ? 'YES' : 'NO' }}</td>
