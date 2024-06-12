@@ -14,7 +14,7 @@
         <div class="table-responsive">
             <table class="table table-striped table-hover table-borderless table-secondary align-middle">
                 <thead>
-                    <tr>
+                    <tr class="text-center">
                         <th scope="col">ID</th>
                         <th scope="col">Image</th>
                         <th scope="col">Title</th>
@@ -26,7 +26,7 @@
                 </thead>
                 <tbody class="table-group-divider">
                     @forelse ($photos as $photo)
-                        <tr class="table-dark">
+                        <tr class="table-dark text-center">
                             <td scope="row">{{ $photo->id }}</td>
                             <td><img width="150" src="{{ $photo->image }}" alt="Photo number {{ $photo->id }}"></td>
                             <td>{{ $photo->title }}</td>
@@ -40,11 +40,13 @@
 
                                 <a class="btn btn-sm btn-secondary " href="{{ route('admin.photos.edit', $photo) }}"><i
                                         class="fa fa-pencil" aria-hidden="true"></i></a>
+
+                                <a href="#">DELETE</a>
                             </td>
                         </tr>
                     @empty
                         <tr class="table-dark">
-                            <td scope="row" colspan="8" class="text-center fw-bold text-danger">No records.</td>
+                            <td scope="row" colspan="7" class="text-center fw-bold text-danger">No records.</td>
                         </tr>
                     @endforelse
                 </tbody>
