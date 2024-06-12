@@ -8,3 +8,10 @@ img {
     max-height: 300px;
     overflow-y: auto;
 }
+
+.welcome_jumbotron {
+    background-image: url('images/jumbo.jpg');
+    background-position: center;
+    background-size: cover;
+    min-height: 100vh;
+}

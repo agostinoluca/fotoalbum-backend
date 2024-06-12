@@ -32,7 +32,7 @@
             <div class="container">
                 <a class="navbar-brand d-flex align-items-center" href="{{ url('/admin') }}">
                     <div class="logo">
-                        <img style="max-width: 350px;" src="{{ asset('images/logo.png') }}" alt="You are logged in!">
+                        <img style="max-width: 260px;" src="{{ asset('images/logo.png') }}" alt="You are logged in!">
                     </div>
                     {{-- config('app.name', 'Laravel') --}}
                 </a>

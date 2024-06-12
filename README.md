@@ -1,7 +1,5 @@
 <p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
 
-<a href="https://it.textstudio.com/">Generatore di font utilizzato</a>
-
 # Fotoalbum
 
 ### Consegna
@@ -66,3 +64,10 @@ Ricorda di utilizzare la validazione (soprattutto lato server) dei campi per gar
 ### Dettagli
 
 Cerca di curare qualche dettaglio di UX/UI. Ad es. prevedi un loader per i caricamenti in attesa di una risposta dall’API; includi un messaggio nel caso i filtri non restituiscano alcun risultato etc.
+
+---
+
+## Crediti
+
+<a href="https://it.textstudio.com/">Generatore di font utilizzato</a>
+<a href="https://unsplash.com/">Foto scaricate da Unsplash</a>
