@@ -4,6 +4,8 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\PhotoController;
+use App\Http\Controllers\Guest\PhotoController as GuestPhotoController;
+use App\Http\Controllers\Guest\PageController;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,9 +18,9 @@ use App\Http\Controllers\Admin\PhotoController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [PageController::class, 'index']);
+
+Route::resource('photos', GuestPhotoController::class)->only(['index', 'show']);
 
 Route::middleware(['auth', 'verified'])
     ->name('admin.')
