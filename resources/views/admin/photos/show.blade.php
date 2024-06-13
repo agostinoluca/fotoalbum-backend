@@ -25,6 +25,11 @@
                 @else
                     <p class="p-3">Oops, a description for this photo has not been provided! 😭</p>
                 @endif
+
+                @if ($photo->category)
+                    <div class="bg-secondary bg-opacity-25 px-3 py-2 fs-5 rounded-2">Category</div>
+                    <div class="py-3 fw-medium">{{ $photo->category->name }}</div>
+                @endif
             </div>
     </main>
 @endsection

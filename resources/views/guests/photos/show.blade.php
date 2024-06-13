@@ -17,8 +17,19 @@
     </div>
 
     <div class="container text-center">
+
+        @if ($photo->category)
+            <div>
+                <span class="lead">Photo category: </span>{{ $photo->category->name }}
+            </div>
+        @else
+            <div>
+                <span class="lead">Photo category: </span>N/A
+            </div>
+        @endif
+
         <div class="rounded-3 d-flex justify-content-evenly align-items-center gap-2">
-            <div class="py-5">
+            <div class="py-3">
                 @include('partials.check_image')
             </div>
 
@@ -34,5 +45,6 @@
         @else
             <div class="fs-2 lead py-5">No description for this photo.</div>
         @endif
+
     </div>
 @endsection
