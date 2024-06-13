@@ -22,6 +22,7 @@
                         <tr class="text-center">
                             <th scope="col">ID</th>
                             <th scope="col">Image</th>
+                            <th scope="col">Category</th>
                             <th scope="col">Title</th>
                             <th scope="col">Evidence</th>
                             <th scope="col">Published</th>
@@ -39,6 +40,7 @@
                                         'aspectRatio' => '16/9',
                                     ])
                                 </td>
+                                <td>{{ $photo->category ? $photo->category->name : 'N/A' }}</td>
                                 <td>{{ $photo->title }}</td>
                                 <td>{{ $photo->evidence == 1 ? 'YES' : 'NO' }}</td>
                                 <td>{{ $photo->published == 1 ? 'YES' : 'NO' }}</td>

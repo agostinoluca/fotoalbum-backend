@@ -18,6 +18,7 @@ class Photo extends Model
         'evidence',
         'published',
         'slug',
+        'category_id'
     ];
 
     /**
