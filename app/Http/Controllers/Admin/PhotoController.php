@@ -8,6 +8,7 @@ use App\Http\Requests\UpdatePhotoRequest;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
+use App\Models\Category;
 
 class PhotoController extends Controller
 {
@@ -26,7 +27,8 @@ class PhotoController extends Controller
      */
     public function create()
     {
-        return view('admin.photos.create');
+        $categories = Category::all();
+        return view('admin.photos.create', compact('categories'));
     }
 
     /**

@@ -16,6 +16,18 @@
             @csrf
 
             <div class="mb-3">
+                <label for="category_id" class="form-label">Category of your photo</label>
+                <select class="form-select" name="category_id" id="category_id">
+                    <option value="" selected>Select one</option>
+
+                    @foreach ($categories as $category)
+                        <option value="{{ $category->id }}" {{ $category->id == old('category_id') ? 'selected' : '' }}>
+                            {{ $category->name }}</option>
+                    @endforeach
+                </select>
+            </div>
+
+            <div class="mb-3">
                 <label for="" class="form-label">Title</label>
                 <input type="text" class="form-control" name="title" id="title" aria-describedby="titleHelper"
                     placeholder="" value="{{ old('title') }}" />
