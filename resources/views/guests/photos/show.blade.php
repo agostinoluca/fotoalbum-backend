@@ -20,7 +20,8 @@
 
         @if ($photo->category)
             <div>
-                <span class="lead">Photo category: </span>{{ $photo->category->name }}
+                <span class="lead">Photo category </span><i class="fa-solid fa-right-long"></i>
+                <span class="text-dark lead border p-2 rounded-4 fw-bold"> {{ $photo->category->name }}</span>
             </div>
         @else
             <div>
@@ -36,14 +37,27 @@
         </div>
 
         @if ($photo->description)
-            <div class="d-flex py-5">
+            <div class="d-flex py-2">
                 <div class="border rounded-3 w-100">
-                    <div class="fs-2 lead p-1">Description:</div>
+                    <div class="fs-2 lead p-1">Description</div>
                     <p class="p-5 scrollable-content">{{ $photo->description }}</p>
                 </div>
             </div>
         @else
             <div class="fs-2 lead py-5">No description for this photo.</div>
+        @endif
+
+        @if ($photo->tags->isNotEmpty())
+            <div class="border rounded-3 w-100 p-2 mb-3">
+                <div class="fs-2 lead p-1">Tags</div>
+                @foreach ($photo->tags as $tag)
+                    <span class="p-1 justify-content-center">
+                        <span class="lead px-1 rounded-2 bg-primary bg-opacity-50">
+                            {{ $tag->name }}
+                        </span>
+                    </span>
+                @endforeach
+            </div>
         @endif
 
     </div>

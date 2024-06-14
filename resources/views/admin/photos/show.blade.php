@@ -28,7 +28,20 @@
 
                 @if ($photo->category)
                     <div class="bg-secondary bg-opacity-25 px-3 py-2 fs-5 rounded-2">Category</div>
-                    <div class="py-3 fw-medium">{{ $photo->category->name }}</div>
+                    <div class="py-3 fs-5 fw-medium">{{ $photo->category->name }}</div>
+                @endif
+
+                @if ($photo->tags->isNotEmpty())
+                    <div class="bg-secondary bg-opacity-25 px-3 py-2 fs-5 rounded-2">Used tags</div>
+                    <div class="py-3">
+                        @foreach ($photo->tags as $tag)
+                            <span class="p-1 justify-content-center">
+                                <span class="lead px-1 rounded-2 bg-primary bg-opacity-50">
+                                    {{ $tag->name }}
+                                </span>
+                            </span>
+                        @endforeach
+                    </div>
                 @endif
             </div>
     </main>

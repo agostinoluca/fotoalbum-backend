@@ -9,6 +9,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 use App\Models\Category;
+use App\Models\Tag;
 
 class PhotoController extends Controller
 {
@@ -19,7 +20,8 @@ class PhotoController extends Controller
     {
         // dd(Photo::all());
         $photos = Photo::orderByDesc('id')->paginate(5);
-        return view('admin.photos.index', compact('photos'));
+        $tags = Tag::all();
+        return view('admin.photos.index', compact('photos', 'tags'));
     }
 
     /**
@@ -28,7 +30,8 @@ class PhotoController extends Controller
     public function create()
     {
         $categories = Category::all();
-        return view('admin.photos.create', compact('categories'));
+        $tags = Tag::all();
+        return view('admin.photos.create', compact('categories', 'tags'));
     }
 
     /**
@@ -36,8 +39,8 @@ class PhotoController extends Controller
      */
     public function store(StorePhotoRequest $request)
     {
-        // dd($request->all());
         $validated = $request->validated();
+        // dd($request->all());
 
         $validated['slug'] = Str::slug($request->title, '-');
 
@@ -45,7 +48,12 @@ class PhotoController extends Controller
 
         // dd($validated);
 
-        Photo::create($validated);
+        $photo = Photo::create($validated);
+
+        if ($request->has('tags')) {
+            $photo->tags()->attach($validated['tags']);
+        }
+
         return to_route('admin.photos.index')->with('status', 'Congratulations, you have added your new fantastic photo!');
     }
 
@@ -63,7 +71,8 @@ class PhotoController extends Controller
     public function edit(Photo $photo)
     {
         $categories = Category::all();
-        return view('admin.photos.edit', compact('photo', 'categories'));
+        $tags = Tag::all();
+        return view('admin.photos.edit', compact('photo', 'categories', 'tags'));
     }
 
     /**
@@ -83,6 +92,11 @@ class PhotoController extends Controller
         }
 
         $photo->update($validated);
+
+        if ($request->has('tags')) {
+            $photo->tags()->sync($validated['tags']);
+        } else
+            $photo->tags()->detach();
 
         return to_route('admin.photos.index')->with('status', 'Congratulations, you have uploaded your fantastic photo!');
     }

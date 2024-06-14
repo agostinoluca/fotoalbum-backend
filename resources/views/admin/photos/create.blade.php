@@ -54,6 +54,22 @@
             </div>
 
 
+
+            <div class="mb-4 scrollable-content">
+                <label for="tagsBox" class="form-label">Add tags to your photo for easy filtering and searching</label>
+                <div id="tagsBox">
+                    @foreach ($tags as $tag)
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" value="{{ $tag->id }}"
+                                id="tag-{{ $tag->id }}" name="tags[]"
+                                {{ in_array($tag->id, old('tags', [])) ? 'checked' : '' }} />
+                            <label class="form-check-label" for="tag-{{ $tag->id }}">{{ $tag->name }}</label>
+                        </div>
+                    @endforeach
+                </div>
+            </div>
+
+
             <button type="submit" class="btn btn-transparent border border-3 border-success">
                 <i class="fa fa-plus-circle" aria-hidden="true"></i> Add Photo
             </button>

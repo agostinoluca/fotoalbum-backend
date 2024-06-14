@@ -61,6 +61,27 @@
                 </div>
 
 
+                <div class="pb-3">
+                    @foreach ($tags as $tag)
+                        <div class="form-check form-check-inline">
+
+                            @if ($errors->any())
+                                <input class="form-check-input" type="checkbox" value="{{ $tag->id }}"
+                                    id="tag-{{ $tag->id }}" name="tags[]"
+                                    {{ in_array($tag->id, old('tags', [])) ? 'checked' : '' }} />
+                                <label class="form-check-label" for="tag-{{ $tag->id }}">{{ $tag->name }}</label>
+                            @else
+                                <input class="form-check-input" type="checkbox" value="{{ $tag->id }}"
+                                    id="tag-{{ $tag->id }}" name="tags[]"
+                                    {{ $photo->tags->contains($tag->id) ? 'checked' : '' }} />
+                                <label class="form-check-label" for="tag-{{ $tag->id }}">{{ $tag->name }}</label>
+                            @endif
+
+                        </div>
+                    @endforeach
+                </div>
+
+
                 <button type="submit" class="btn btn-transparent border border-3 border-success">
                     <i class="fa fa-pencil" aria-hidden="true"></i> Update
                 </button>
