@@ -6,6 +6,7 @@ use App\Models\Tag;
 use App\Http\Requests\StoreTagRequest;
 use App\Http\Requests\UpdateTagRequest;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Str;
 
 class TagController extends Controller
 {
@@ -14,15 +15,8 @@ class TagController extends Controller
      */
     public function index()
     {
-        //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
+        $tags = Tag::orderByDesc('id')->get();
+        return view('admin.tags.index', compact('tags'));
     }
 
     /**
@@ -30,23 +24,10 @@ class TagController extends Controller
      */
     public function store(StoreTagRequest $request)
     {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(Tag $tag)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Tag $tag)
-    {
-        //
+        $validated = $request->validated();
+        $validated['slug'] = Str::slug($request->name, '-');
+        Tag::create($validated);
+        return to_route('admin.tags.index')->with('status', 'The Tag was successfully added!');
     }
 
     /**
@@ -54,7 +35,11 @@ class TagController extends Controller
      */
     public function update(UpdateTagRequest $request, Tag $tag)
     {
-        //
+        $validated = $request->validated();
+        $validated['slug'] = Str::slug($request->name, '-');
+        $tag->update($validated);
+
+        return to_route('admin.tags.index')->with('status', 'The tag was successfully updated!');
     }
 
     /**
@@ -62,6 +47,8 @@ class TagController extends Controller
      */
     public function destroy(Tag $tag)
     {
-        //
+        $tag->delete();
+
+        return to_route('admin.tags.index')->with('status', 'The Tag was successfully deleted!');
     }
 }

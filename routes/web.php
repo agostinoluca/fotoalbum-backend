@@ -7,6 +7,7 @@ use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\PhotoController;
 use App\Http\Controllers\Guest\PhotoController as GuestPhotoController;
 use App\Http\Controllers\Guest\PageController;
+use App\Http\Controllers\Admin\TagController;
 
 /*
 |--------------------------------------------------------------------------
@@ -32,6 +33,8 @@ Route::middleware(['auth', 'verified'])
         Route::resource('photos', PhotoController::class);
 
         Route::resource('categories', CategoryController::class);
+
+        Route::resource('tags', TagController::class);
     });
 
 

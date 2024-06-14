@@ -28,6 +28,12 @@
                                     <i class="fa fa-pencil text-secondary" aria-hidden="true"></i>
                                 </a>
                             </th>
+                            <th scope="col" class="text-nowrap">Tags
+                                <a href="{{ route('admin.tags.index') }}">
+                                    <i class="fa fa-plus-circle text-secondary" aria-hidden="true"></i>
+                                    <i class="fa fa-pencil text-secondary" aria-hidden="true"></i>
+                                </a>
+                            </th>
                             <th scope="col">Title</th>
                             <th scope="col">Evidence</th>
                             <th scope="col">Published</th>
@@ -46,6 +52,13 @@
                                     ])
                                 </td>
                                 <td>{{ $photo->category ? $photo->category->name : 'N/A' }}</td>
+                                <td style="max-width: 200px;" class="text-nowrap text-truncate">
+                                    @forelse ($photo->tags as $tag)
+                                        <span class="badge bg-info bg-opacity-75 text-black p-1">{{ $tag->name }}</span>
+                                    @empty
+                                        No Tags
+                                    @endforelse
+                                </td>
                                 <td>{{ $photo->title }}</td>
                                 <td>{{ $photo->evidence == 1 ? 'YES' : 'NO' }}</td>
                                 <td>{{ $photo->published == 1 ? 'YES' : 'NO' }}</td>

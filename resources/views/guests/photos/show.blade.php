@@ -48,7 +48,7 @@
         @endif
 
         @if ($photo->tags->isNotEmpty())
-            <div class="border rounded-3 w-100 p-2 mb-3">
+            <div class="border rounded-3 w-100 p-2 mb-5">
                 <div class="fs-2 lead p-1">Tags</div>
                 @foreach ($photo->tags as $tag)
                     <span class="p-1 justify-content-center">
@@ -57,6 +57,10 @@
                         </span>
                     </span>
                 @endforeach
+            </div>
+        @else
+            <div class="border rounded-3 w-100 p-2 mt-2">
+                <div class="lead p-1">No tags for this photo.</div>
             </div>
         @endif
 
