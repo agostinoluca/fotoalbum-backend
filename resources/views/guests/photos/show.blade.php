@@ -17,18 +17,6 @@
     </div>
 
     <div class="container text-center">
-
-        @if ($photo->category)
-            <div>
-                <span class="lead">Photo category </span><i class="fa-solid fa-right-long"></i>
-                <span class="text-dark lead border p-2 rounded-4 fw-bold"> {{ $photo->category->name }}</span>
-            </div>
-        @else
-            <div>
-                <span class="lead">Photo category: </span>N/A
-            </div>
-        @endif
-
         <div class="rounded-3 d-flex justify-content-evenly align-items-center gap-2">
             <div class="py-3">
                 @include('partials.check_image')
@@ -47,22 +35,40 @@
             <div class="fs-2 lead py-5">No description for this photo.</div>
         @endif
 
-        @if ($photo->tags->isNotEmpty())
-            <div class="border rounded-3 w-100 p-2 mb-5">
-                <div class="fs-2 lead p-1">Tags</div>
-                @foreach ($photo->tags as $tag)
-                    <span class="p-1 justify-content-center">
-                        <span class="lead px-1 rounded-2 bg-primary bg-opacity-50">
-                            {{ $tag->name }}
+        <div class="row align-items-center border rounded-3 w-100 py-4 mb-5">
+            <div class="col">
+
+                @if ($photo->tags->isNotEmpty())
+                    <div class="fs-2 lead p-1">Tags</div>
+                    @foreach ($photo->tags as $tag)
+                        <span class="p-1 justify-content-center">
+                            <span class="lead px-1 rounded-2 bg-primary bg-opacity-50">
+                                {{ $tag->name }}
+                            </span>
                         </span>
-                    </span>
-                @endforeach
+                    @endforeach
+                @else
+                    <div class="border rounded-3 w-100 p-2 mt-2">
+                        <div class="lead p-1">No tags for this photo.</div>
+                    </div>
+                @endif
+
             </div>
-        @else
-            <div class="border rounded-3 w-100 p-2 mt-2">
-                <div class="lead p-1">No tags for this photo.</div>
+
+
+            <div class="col">
+                @if ($photo->category)
+                    <span class="lead">Photo category </span><i class="fa-solid fa-right-long"></i>
+                    <span class="text-dark lead border p-2 rounded-4 fw-bold"> {{ $photo->category->name }}</span>
+                @else
+                    <span class="lead">Photo category: </span>N/A
+                @endif
+
+                <div class="lead pt-4">Photo published on date: {{ $photo->created_at->format('Y-m-d') }}</div>
             </div>
-        @endif
+
+
+        </div>
 
     </div>
 @endsection
