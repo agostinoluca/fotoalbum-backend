@@ -34,7 +34,6 @@
                     <div class="logo">
                         <img style="max-width: 260px;" src="{{ asset('images/logo.png') }}" alt="You are logged in!">
                     </div>
-                    {{-- config('app.name', 'Laravel') --}}
                 </a>
 
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse"

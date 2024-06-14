@@ -69,5 +69,5 @@ Cerca di curare qualche dettaglio di UX/UI. Ad es. prevedi un loader per i caric
 
 ## Crediti
 
-<a href="https://it.textstudio.com/">Generatore di font utilizzato</a>
+<a href="https://it.textstudio.com/">Generatore di font utilizzato</a> <br>
 <a href="https://unsplash.com/">Foto scaricate da Unsplash</a>
