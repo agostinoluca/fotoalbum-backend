@@ -1,10 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
 use App\Models\Category;
 use App\Http\Requests\StoreCategoryRequest;
 use App\Http\Requests\UpdateCategoryRequest;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Str;
 
 class CategoryController extends Controller
 {
@@ -13,7 +15,8 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        //
+        $categories = Category::orderByDesc('id')->get();
+        return view('admin.categories.index', compact('categories'));
     }
 
     /**
@@ -29,7 +32,11 @@ class CategoryController extends Controller
      */
     public function store(StoreCategoryRequest $request)
     {
-        //
+        // dd($request->all());
+        $validated = $request->validated();
+        $validated['slug'] = Str::slug($request->name, '-');
+        Category::create($validated);
+        return to_route('admin.categories.index')->with('status', 'The category was successfully added!');
     }
 
     /**
@@ -53,7 +60,12 @@ class CategoryController extends Controller
      */
     public function update(UpdateCategoryRequest $request, Category $category)
     {
-        //
+        // dd($request->all());
+        $validated = $request->validated();
+        $validated['slug'] = Str::slug($request->name, '-');
+        $category->update($validated);
+
+        return to_route('admin.categories.index')->with('status', 'The category was successfully updated!');
     }
 
     /**
@@ -61,6 +73,8 @@ class CategoryController extends Controller
      */
     public function destroy(Category $category)
     {
-        //
+        $category->delete();
+
+        return to_route('admin.categories.index')->with('status', 'The category was successfully deleted!');
     }
 }

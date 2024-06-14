@@ -22,7 +22,12 @@
                         <tr class="text-center">
                             <th scope="col">ID</th>
                             <th scope="col">Image</th>
-                            <th scope="col">Category</th>
+                            <th scope="col" class="text-nowrap">Category
+                                <a href="{{ route('admin.categories.index') }}">
+                                    <i class="fa fa-plus-circle text-secondary" aria-hidden="true"></i>
+                                    <i class="fa fa-pencil text-secondary" aria-hidden="true"></i>
+                                </a>
+                            </th>
                             <th scope="col">Title</th>
                             <th scope="col">Evidence</th>
                             <th scope="col">Published</th>
