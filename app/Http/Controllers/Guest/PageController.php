@@ -10,7 +10,7 @@ class PageController extends Controller
 {
     public function index()
     {
-        $featured_photo = Photo::where('evidence', true)->get();
+        $featured_photo = Photo::where('evidence', true)->where('published', true)->get();
         return view('welcome', compact('featured_photo'));
     }
 }
