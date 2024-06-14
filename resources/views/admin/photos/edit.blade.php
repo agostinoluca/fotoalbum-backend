@@ -87,11 +87,25 @@
                     </div>
                 </div>
 
-                <div class="mb-4">
+                <div class="mt-3 mb-4">
                     <div class="form-check form-check-inline">
                         <input class="form-check-input" type="checkbox" id="evidence" name="evidence" value="1"
                             @if (old('evidence', $photo->evidence)) checked @endif>
                         <label class="form-check-label" for="evidence">Check here if you want to highlight the photo</label>
+                    </div>
+                </div>
+
+
+                <div class="mb-4">
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" id="draft" name="published" value="0"
+                            @if (old('published', $photo->published) == '0') checked @endif>
+                        <label class="form-check-label" for="draft">Save as draft</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" id="publish" name="published" value="1"
+                            @if (old('published', $photo->published) == '1') checked @endif>
+                        <label class="form-check-label" for="publish">Publish</label>
                     </div>
                 </div>
 
