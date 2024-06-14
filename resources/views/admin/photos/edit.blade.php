@@ -62,23 +62,37 @@
 
 
                 <div class="pb-3">
-                    @foreach ($tags as $tag)
-                        <div class="form-check form-check-inline">
+                    <label for="tagsBox" class="form-label">Edit tags to your photo for easy filtering and
+                        searching</label>
+                    <div id="tagsBox" class="scrollable-content border p-2 rounded-2">
+                        @foreach ($tags as $tag)
+                            <div class="form-check form-check-inline">
 
-                            @if ($errors->any())
-                                <input class="form-check-input" type="checkbox" value="{{ $tag->id }}"
-                                    id="tag-{{ $tag->id }}" name="tags[]"
-                                    {{ in_array($tag->id, old('tags', [])) ? 'checked' : '' }} />
-                                <label class="form-check-label" for="tag-{{ $tag->id }}">{{ $tag->name }}</label>
-                            @else
-                                <input class="form-check-input" type="checkbox" value="{{ $tag->id }}"
-                                    id="tag-{{ $tag->id }}" name="tags[]"
-                                    {{ $photo->tags->contains($tag->id) ? 'checked' : '' }} />
-                                <label class="form-check-label" for="tag-{{ $tag->id }}">{{ $tag->name }}</label>
-                            @endif
+                                @if ($errors->any())
+                                    <input class="form-check-input" type="checkbox" value="{{ $tag->id }}"
+                                        id="tag-{{ $tag->id }}" name="tags[]"
+                                        {{ in_array($tag->id, old('tags', [])) ? 'checked' : '' }} />
+                                    <label class="form-check-label"
+                                        for="tag-{{ $tag->id }}">{{ $tag->name }}</label>
+                                @else
+                                    <input class="form-check-input" type="checkbox" value="{{ $tag->id }}"
+                                        id="tag-{{ $tag->id }}" name="tags[]"
+                                        {{ $photo->tags->contains($tag->id) ? 'checked' : '' }} />
+                                    <label class="form-check-label"
+                                        for="tag-{{ $tag->id }}">{{ $tag->name }}</label>
+                                @endif
 
-                        </div>
-                    @endforeach
+                            </div>
+                        @endforeach
+                    </div>
+                </div>
+
+                <div class="mb-4">
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="checkbox" id="evidence" name="evidence" value="1"
+                            @if (old('evidence', $photo->evidence)) checked @endif>
+                        <label class="form-check-label" for="evidence">Check here if you want to highlight the photo</label>
+                    </div>
                 </div>
 
 

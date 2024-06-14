@@ -91,12 +91,17 @@ class PhotoController extends Controller
             $validated['image'] = $image_path;
         }
 
+        if (!$request->has('evidence')) {
+            $photo->evidence = false;
+        }
+
         $photo->update($validated);
 
         if ($request->has('tags')) {
             $photo->tags()->sync($validated['tags']);
         } else
             $photo->tags()->detach();
+
 
         return to_route('admin.photos.index')->with('status', 'Congratulations, you have uploaded your fantastic photo!');
     }

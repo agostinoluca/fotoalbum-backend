@@ -55,9 +55,9 @@
 
 
 
-            <div class="mb-4 scrollable-content">
+            <div class="mb-4 ">
                 <label for="tagsBox" class="form-label">Add tags to your photo for easy filtering and searching</label>
-                <div id="tagsBox">
+                <div id="tagsBox" class="scrollable-content border p-2 rounded-2">
                     @foreach ($tags as $tag)
                         <div class="form-check form-check-inline">
                             <input class="form-check-input" type="checkbox" value="{{ $tag->id }}"
@@ -68,6 +68,19 @@
                     @endforeach
                 </div>
             </div>
+
+
+
+            <div class="mb-4">
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="checkbox" id="evidence" name="evidence" value="1"
+                        @if (old('evidence')) checked @endif>
+                    <label class="form-check-label" for="evidence">Check here if you want to highlight the photo</label>
+                </div>
+            </div>
+
+
+
 
 
             <button type="submit" class="btn btn-transparent border border-3 border-success">
