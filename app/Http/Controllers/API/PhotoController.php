@@ -18,6 +18,11 @@ class PhotoController extends Controller
                     'success' => true,
                     'results' => Photo::with(['category', 'tags'])->where('evidence', true)->orderByDesc('id')->paginate(6),
                 ]);
+            } else if ($request->search == "" && $request->has('category') && $request->category != '' && $request->evidence == false) {
+                return response()->json([
+                    'success' => true,
+                    'results' => Photo::with(['category', 'tags'])->where('category_id', $request->category)->orderByDesc('id')->paginate(6),
+                ]);
             } else if ($request->search != "" && $request->has('category') && $request->category != '' && $request->evidence == true) {
                 return response()->json([
                     'success' => true,
