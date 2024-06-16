@@ -11,8 +11,8 @@ class CategoryController extends Controller
     public function index()
     {
         return response()->json([
-            'success' => 'true',
-            'results' => Category::all(),
+            'success' => true,
+            'results' => Category::orderBy('name')->get(),
         ]);
     }
 }

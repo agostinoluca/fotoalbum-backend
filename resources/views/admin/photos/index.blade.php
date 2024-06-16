@@ -123,7 +123,7 @@
                             </tr>
                         @empty
                             <tr class="table-dark">
-                                <td scope="row" colspan="7" class="text-center fw-bold text-danger">No records.</td>
+                                <td scope="row" colspan="9" class="text-center fw-bold text-danger">No records.</td>
                             </tr>
                         @endforelse
                     </tbody>

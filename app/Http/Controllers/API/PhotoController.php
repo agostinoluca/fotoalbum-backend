@@ -12,16 +12,29 @@ class PhotoController extends Controller
     {
 
         if ($request->has('search')) {
-            return response()->json([
-                'success' => true,
-                'results' => Photo::with(['category', 'tags'])->where('title', 'like', '%' . $request->search . '%')->orderByDesc('id')->paginate(6),
-            ]);
+
+            if ($request->search == "" && $request->category == "") {
+                return response()->json([
+                    'success' => true,
+                    'results' => Photo::with(['category', 'tags'])->where('evidence', true)->orderByDesc('id')->paginate(6),
+                ]);
+            } else if ($request->has('category') && ($request->category != '')) {
+                return response()->json([
+                    'success' => true,
+                    'results' => Photo::with(['category', 'tags'])->where('category_id', $request->category)->where('title', 'like', '%' . $request->search . '%')->orderByDesc('id')->paginate(6),
+                ]);
+            } else {
+                return response()->json([
+                    'success' => true,
+                    'results' => Photo::with(['category', 'tags'])->where('title', 'like', '%' . $request->search . '%')->orderByDesc('id')->paginate(6),
+                ]);
+            }
         }
 
 
         return response()->json([
             'success' => true,
-            'results' => Photo::with(['category', 'tags'])->orderByDesc('id')->paginate(6),
+            'results' => Photo::with(['category', 'tags'])->where('evidence', true)->orderByDesc('id')->paginate(6),
         ]);
     }
 
@@ -40,7 +53,7 @@ class PhotoController extends Controller
                 'success' => false,
                 'results' => 'Photo not found'
 
-            ]);
+            ], 404);
         }
     }
 }
