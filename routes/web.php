@@ -8,6 +8,7 @@ use App\Http\Controllers\Admin\PhotoController;
 use App\Http\Controllers\Guest\PhotoController as GuestPhotoController;
 use App\Http\Controllers\Guest\PageController;
 use App\Http\Controllers\Admin\TagController;
+use App\Http\Controllers\LeadController;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,9 +21,12 @@ use App\Http\Controllers\Admin\TagController;
 |
 */
 
-Route::get('/', [PageController::class, 'index']);
+Route::get('/', [PageController::class, 'index'])->name('welcome');
 
 Route::resource('photos', GuestPhotoController::class)->only(['index', 'show']);
+
+Route::get('contacts', [LeadController::class, 'create'])->name('contacts');
+Route::post('contacts', [LeadController::class, 'store'])->name('contacts.store');
 
 Route::middleware(['auth', 'verified'])
     ->name('admin.')
@@ -35,6 +39,11 @@ Route::middleware(['auth', 'verified'])
         Route::resource('categories', CategoryController::class);
 
         Route::resource('tags', TagController::class);
+
+        Route::get('/mailable', function () {
+            $lead = App\Models\Lead::find(1);
+            return new App\Mail\NewLeadMessage($lead);
+        });
     });
 
 
