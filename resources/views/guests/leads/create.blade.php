@@ -54,7 +54,7 @@
             </div>
 
 
-            <button type="submit" class="btn btn-success px-3">
+            <button type="submit" class="btn btn-success px-3 mb-3">
                 Send
             </button>
 
