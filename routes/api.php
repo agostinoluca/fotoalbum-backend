@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\API\PhotoController;
 use App\Http\Controllers\API\TagController;
 use App\Http\Controllers\API\CategoryController;
+use App\Http\Controllers\API\LeadController;
 
 /*
 |--------------------------------------------------------------------------
@@ -27,3 +28,5 @@ Route::get('/photos/{photo}', [PhotoController::class, 'show']);
 Route::get('/tags', [TagController::class, 'index']);
 
 Route::get('/categories', [CategoryController::class, 'index']);
+
+Route::post('contacts', [LeadController::class, 'store']);
