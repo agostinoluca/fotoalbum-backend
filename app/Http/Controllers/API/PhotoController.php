@@ -16,37 +16,37 @@ class PhotoController extends Controller
             if ($request->search == "" && $request->category == "") {
                 return response()->json([
                     'success' => true,
-                    'results' => Photo::with(['category', 'tags'])->where('evidence', true)->orderByDesc('id')->paginate(6),
+                    'results' => Photo::with(['category', 'tags'])->where('published', true)->where('evidence', true)->orderByDesc('id')->paginate(6),
                 ]);
             } else if ($request->search == "" && $request->has('category') && $request->category != '' && $request->evidence == false) {
                 return response()->json([
                     'success' => true,
-                    'results' => Photo::with(['category', 'tags'])->where('category_id', $request->category)->orderByDesc('id')->paginate(6),
+                    'results' => Photo::with(['category', 'tags'])->where('published', true)->where('category_id', $request->category)->orderByDesc('id')->paginate(6),
                 ]);
             } else if ($request->search != "" && $request->has('category') && $request->category != '' && $request->evidence == true) {
                 return response()->json([
                     'success' => true,
-                    'results' => Photo::with(['category', 'tags'])->where('evidence', true)->where('category_id', $request->category)->where('title', 'like', '%' . $request->search . '%')->orderByDesc('id')->paginate(6),
+                    'results' => Photo::with(['category', 'tags'])->where('published', true)->where('evidence', true)->where('category_id', $request->category)->where('title', 'like', '%' . $request->search . '%')->orderByDesc('id')->paginate(6),
                 ]);
             } else if ($request->search != "" && $request->category == '' && $request->evidence == true) {
                 return response()->json([
                     'success' => true,
-                    'results' => Photo::with(['category', 'tags'])->where('evidence', true)->where('title', 'like', '%' . $request->search . '%')->orderByDesc('id')->paginate(6),
+                    'results' => Photo::with(['category', 'tags'])->where('published', true)->where('evidence', true)->where('title', 'like', '%' . $request->search . '%')->orderByDesc('id')->paginate(6),
                 ]);
             } else if ($request->search == "" && $request->category != '' && $request->evidence == true) {
                 return response()->json([
                     'success' => true,
-                    'results' => Photo::with(['category', 'tags'])->where('evidence', true)->where('category_id', $request->category)->orderByDesc('id')->paginate(6),
+                    'results' => Photo::with(['category', 'tags'])->where('published', true)->where('evidence', true)->where('category_id', $request->category)->orderByDesc('id')->paginate(6),
                 ]);
             } else if ($request->search != "" && $request->category != '') {
                 return response()->json([
                     'success' => true,
-                    'results' => Photo::with(['category', 'tags'])->where('category_id', $request->category)->where('title', 'like', '%' . $request->search . '%')->orderByDesc('id')->paginate(6),
+                    'results' => Photo::with(['category', 'tags'])->where('published', true)->where('category_id', $request->category)->where('title', 'like', '%' . $request->search . '%')->orderByDesc('id')->paginate(6),
                 ]);
             } else {
                 return response()->json([
                     'success' => true,
-                    'results' => Photo::with(['category', 'tags'])->where('title', 'like', '%' . $request->search . '%')->orderByDesc('id')->paginate(6),
+                    'results' => Photo::with(['category', 'tags'])->where('published', true)->where('title', 'like', '%' . $request->search . '%')->orderByDesc('id')->paginate(6),
                 ]);
             }
         }
@@ -54,7 +54,7 @@ class PhotoController extends Controller
 
         return response()->json([
             'success' => true,
-            'results' => Photo::with(['category', 'tags'])->where('evidence', true)->orderByDesc('id')->paginate(6),
+            'results' => Photo::with(['category', 'tags'])->where('published', true)->where('evidence', true)->orderByDesc('id')->paginate(6),
         ]);
     }
 
